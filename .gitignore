@@ -1,0 +1,24 @@
+# Environment variables — never commit these
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Alembic
+# (keep alembic/versions/ tracked — migrations should be committed)
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
