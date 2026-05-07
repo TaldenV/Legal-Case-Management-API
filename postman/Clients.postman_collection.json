@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "7e13b810-c433-4f0f-8c15-6d9e63ad2f46",
+		"name": "Clients",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21045697"
+	},
+	"item": [
+		{
+			"name": "Create Client",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"first\",\r\n    \"last_name\": \"last\",\r\n    \"email\": \"email@email.com\",\r\n    \"phone\": \"867-5309\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Clients",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Client",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/clients/{{CLIENT_ID}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clients",
+						"{{CLIENT_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Client",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"first_name\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/clients/{{CLIENT_ID}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clients",
+						"{{CLIENT_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Client",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API_KEY}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/clients/{{CLIENT_ID}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"clients",
+						"{{CLIENT_ID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
