@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.api_key import ApiKey
 from app.middleware.auth import validate_api_key, hash_key
-from app.routers import clients, cases, claims
+from app.routers import clients, cases, claims, incidents
 
 app = FastAPI(
     title="Legal Case Management API",
@@ -17,6 +17,7 @@ app = FastAPI(
 app.include_router(clients.router)
 app.include_router(cases.router)
 app.include_router(claims.router)
+app.include_router(incidents.router)
 
 @app.get("/health")
 def health_check():
