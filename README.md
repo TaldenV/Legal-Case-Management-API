@@ -8,9 +8,9 @@ This project was built to demonstrate normalized relational database design, per
 
 ## Background
 
-The schema design in this project mirrors a real normalization problem: a legal firm storing client, case, claim, and incident data in a single denormalized record. When a client opened a second claim, the entire record had to be duplicated — meaning a client changing their phone number required updates in multiple places, and data inconsistencies were inevitable.
-
-This API separates those concerns into distinct, related entities so that a single client record can have multiple cases, and a single case can have multiple claims, with no data duplication.
+The schema design in this project mirrors a real normalization problem I helped solve at a personal injury law firm.
+When I joined, all client, case, claim, and incident data were stored in a single denormalized record. If a client opened a second claim, the entire record had to be duplicated. Something as simple as a client changing their phone number required updates in multiple places, often resulting in data inconsistencies.
+This project attempts to recreate the core data relationship into distinct, related entities so that a client can have multiple cases, an incident can represent multiple people involved in an accident, and a single case can have multiple claims — with no data duplication.
 
 ---
 
@@ -39,8 +39,8 @@ This API separates those concerns into distinct, related entities so that a sing
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/TaldenV/Legal-Case-Management-API
+cd Legal-Case-Management-API
 
 # 2. Copy the environment template and fill in your values
 cp .env.example .env
