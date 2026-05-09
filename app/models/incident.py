@@ -6,7 +6,7 @@ class Incident(Base):
     __tablename__ = "incidents"
 
     id = Column(Integer, primary_key=True, index=True)
-    claim_id = Column(Integer, ForeignKey("claims.id"), nullable=False)
+    case_id = Column(Integer, ForeignKey("cases.id"), nullable=False)
     location = Column(String, nullable=True)
     incident_type = Column(String, nullable=True)
     notes = Column(String, nullable=True)
