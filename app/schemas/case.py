@@ -10,15 +10,16 @@ class CaseCreate(BaseModel):
     case_type examples: 'personal_injury', 'workers_comp', 'medical_malpractice'
     """
     client_id: int
+    incident_id: int
     case_type: str
-    status: Optional[str] = "open"
+    status: Optional[str] = "Initial"
 
 
 class CaseUpdate(BaseModel):
     """
     Schema for updating a case.
     All fields optional — only provided fields are updated.
-    Setting status to 'closed' will automatically populate closed_at in the route handler.
+    Setting status to 'Closed' will automatically populate closed_at in the route handler.
     """
     case_type: Optional[str] = None
     status: Optional[str] = None
@@ -27,6 +28,7 @@ class CaseUpdate(BaseModel):
 class CaseResponse(BaseModel):
     id: int
     client_id: int
+    incident_id: int
     case_type: str
     status: str
     opened_at: datetime

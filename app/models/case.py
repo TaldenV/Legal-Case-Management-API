@@ -7,6 +7,7 @@ class Case(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)
+    incident_id = Column(Integer, ForeignKey("incidents.id"), nullable=False)
     case_type = Column(String, nullable=False)
     status = Column(String, nullable=False, default="open")
     opened_at = Column(DateTime(timezone=True), server_default=func.now())
