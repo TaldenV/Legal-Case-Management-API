@@ -5,6 +5,7 @@ from typing import List
 from app.database import get_db
 from app.middleware.auth import validate_api_key
 from app.models.client import Client
+from app.models.case import Case
 from app.schemas.client import ClientCreate, ClientUpdate, ClientResponse
 
 # APIRouter groups related endpoints together.
@@ -99,5 +100,14 @@ def delete_client(client_id: int, db: Session = Depends(get_db)):
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Client {client_id} not found.",
         )
+    
+    # Check for dependent cases before deleting
+    case = db.query(Case).filter(Case.case_id == client_id).first()
+    if case:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=f"Cannot delete client {client_id} — it still has cases. Delete cases first.",
+        )
+    
     db.delete(client)
     db.commit()
