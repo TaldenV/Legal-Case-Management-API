@@ -18,10 +18,10 @@ router = APIRouter(
 @router.post("/", response_model=IncidentResponse, status_code=status.HTTP_201_CREATED)
 def create_incident(incident_in: IncidentCreate, db: Session = Depends(get_db)):
     """
-    Record a new incident against an existing case.
-    Incidents are factual records of what happened — Case status does not
-    gate incident creation since documentation may be needed regardless of
-    whether a case is open or closed.
+    Create a new incident.
+    Incidents are all the details around an accident.
+    There would be one case per injured defendant under each Incident.
+    Returning clients can open a new incident and case.
     """
     case = db.query(Case).filter(Case.id == incident_in.case_id).first()
     if not case:
@@ -35,23 +35,6 @@ def create_incident(incident_in: IncidentCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(incident)
     return incident
-
-
-@router.get("/", response_model=List[IncidentResponse])
-def list_incidents(
-    skip: int = 0,
-    limit: int = 50,
-    case_id: Optional[int] = None,
-    db: Session = Depends(get_db),
-):
-    """
-    List incidents with optional filtering by case_id.
-    Example: GET /incidents?case_id=1 returns all incidents for case 1.
-    """
-    query = db.query(Incident)
-    if case_id:
-        query = query.filter(Incident.case_id == case_id)
-    return query.offset(skip).limit(limit).all()
 
 
 @router.get("/{incident_id}", response_model=IncidentResponse)
@@ -96,5 +79,14 @@ def delete_incident(incident_id: int, db: Session = Depends(get_db)):
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Incident {incident_id} not found.",
         )
+    
+    # Check for dependent cases before deleting
+    case = db.query(Case).filter(Case.incident_id == incident_id).first()
+    if case:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=f"Cannot delete incident {incident_id} — it still has cases. Delete cases first.",
+        )
+    
     db.delete(incident)
     db.commit()
