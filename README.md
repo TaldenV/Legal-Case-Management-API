@@ -27,17 +27,7 @@ This API separates those concerns into distinct, related entities so that a sing
 
 ## Schema Design
 
-```
-clients
-  └── cases (one client → many cases)
-        └── claims (one case → many claims)
-
-incidents ── cases (one incident → many cases)
-
-api_keys (partner authentication)
-```
-
----
+![Relationship Schema](./assets/Relationship%20Schema.png)
 
 ## Getting Started
 
@@ -193,6 +183,7 @@ Set up a Postman environment variable `api_key` with your generated key, then us
 │       ├── case.py
 │       ├── claim.py
 │       └── incident.py
+├── assets/                  # Images for README
 ├── alembic/                 # Migration configuration and history
 │   ├── env.py
 │   ├── script.py.mako
