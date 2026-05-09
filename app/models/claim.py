@@ -7,7 +7,8 @@ class Claim(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     case_id = Column(Integer, ForeignKey("cases.id"), nullable=False)
+    type = Column(String, nullable=True, default="L")
     incident_date = Column(Date, nullable=True)
     description = Column(String, nullable=True)
-    status = Column(String, nullable=False, default="open")
+    status = Column(String, nullable=False, default="Initial")
     created_at = Column(DateTime(timezone=True), server_default=func.now())
